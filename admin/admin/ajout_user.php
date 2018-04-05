@@ -25,6 +25,7 @@ require_once '../header.php';
 
 
         // Vérification présence mail dans la base
+
         $resultat = $bdd->prepare('SELECT id FROM users WHERE email = :email');
         $resultat -> bindValue(':email', $post['email']);
         $resultat->execute();
@@ -93,7 +94,7 @@ require_once '../header.php';
                     <div class="form-group">
                         <label for="role">Rôle</label>
                         <select name="role" class="form-control" id="role">
-                            <option value="ROLE_USER">Vendeur</option>
+                            <option value="ROLE_SELLER">Vendeur</option>
                             <option value="ROLE_ADMIN">Administrateur</option>
                         </select>
                     </div>
@@ -101,8 +102,56 @@ require_once '../header.php';
                 </form>
             </div>
         </div>
-        <div class="row border" style="height: 200px">
+        <?php
+        if(!empty($_GET['deleteUser']) AND is_numeric($_GET['deleteUser'])){
+            $resultat = $bdd->prepare('DELETE FROM users WHERE id = :supp');
+            $resultat ->bindValue(':supp', $_GET['deleteUser']);
+            $resultat ->execute();
+            $validate = 'utilisateur supprimé';
+        }
+        ?>
+        <?php if (isset($validate)) : ?>
+            <div class="alert alert-success">
+                <?= $validate ?>
+            </div>
+        <?php endif; ?>
+        <div class="row justify-content-around" style="height: 200px">
+            <ul class="list-group">
+                <h2>ADMIN</h2>
+                <?php
+                    $resultat = $bdd ->query('SElECT nom, id FROM users WHERE role = "ROLE_ADMIN"');
+                    $vendeurs = $resultat ->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($vendeurs as $vendeur){
+                        ?>
+                        <li class="list-group-item">
+                            <?= $vendeur['nom'] ?>
 
+                            <a href="# <?= $vendeur['id'] ?>"<i class="fas fa-edit"></i> modifier</a>
+                            <a href="ajout_user.php?deleteUser=<?= $vendeur['id'] ?>"<i class=""></i> supprimer</a>
+                        </li>
+                    <?php
+                    }
+                    ?>
+            </ul>
+
+
+            <ul class="list-group">
+                <h2>SELLER</h2>
+                <?php
+                $resultat = $bdd ->query('SElECT nom, id FROM users WHERE role = "ROLE_SELLER"');
+                $vendeurs = $resultat ->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($vendeurs as $vendeur){
+                    ?>
+                    <li class="list-group-item">
+                        <?= $vendeur['nom'] ?>
+
+                        <a href="# <?= $vendeur['id'] ?>"<i class=""></i> modifier</a>
+                        <a href="ajout_user.php?deleteUser=<?= $vendeur['id'] ?>"<i class=""></i> supprimer</a>
+                    </li>
+                    <?php
+                }
+                ?>
+            </ul>
         </div>
     </div>
 <?php
