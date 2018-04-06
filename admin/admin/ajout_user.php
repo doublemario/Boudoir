@@ -24,7 +24,7 @@ require_once '../header.php';
         $errors = [];
 
 
-        // Vérification présence mail dans la base
+        // -----------------------Vérification présence mail dans la base et autres erreurs
 
         $resultat = $bdd->prepare('SELECT id FROM users WHERE email = :email');
         $resultat -> bindValue(':email', $post['email']);
@@ -76,8 +76,8 @@ require_once '../header.php';
 
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <h1>Ajouter un utilisateur</h1>
+            <div class="col-md-12">
+                <h1 class="d-flex justify-content-center">Ajouter un utilisateur</h1>
                 <form method="post">
                     <div class="form-group">
                         <label for="name">Nom</label>
@@ -103,6 +103,7 @@ require_once '../header.php';
             </div>
         </div>
         <?php
+        // --------------Suppression utilisateur--------------------
         if(!empty($_GET['deleteUser']) AND is_numeric($_GET['deleteUser'])){
             $resultat = $bdd->prepare('DELETE FROM users WHERE id = :supp');
             $resultat ->bindValue(':supp', $_GET['deleteUser']);
@@ -115,10 +116,11 @@ require_once '../header.php';
                 <?= $validate ?>
             </div>
         <?php endif; ?>
-        <div class="row justify-content-around" style="height: 200px">
+        <div class="row justify-content-between" style="height: 200px; padding: 100px">
             <ul class="list-group">
                 <h2>ADMIN</h2>
                 <?php
+                // --------------Affichage des admins--------------------
                     $resultat = $bdd ->query('SElECT nom, id FROM users WHERE role = "ROLE_ADMIN"');
                     $vendeurs = $resultat ->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($vendeurs as $vendeur){
@@ -138,6 +140,7 @@ require_once '../header.php';
             <ul class="list-group">
                 <h2>SELLER</h2>
                 <?php
+                // --------------Affichage des vendeurs--------------------
                 $resultat = $bdd ->query('SElECT nom, id FROM users WHERE role = "ROLE_SELLER"');
                 $vendeurs = $resultat ->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($vendeurs as $vendeur){
