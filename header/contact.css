@@ -1,0 +1,38 @@
+body{
+	background-color: #ECEFF1;
+}
+
+#block{
+    margin-top: 4em;
+}
+
+
+.container-fluid{
+	margin-bottom: 100px;
+}
+
+
+/*Dimensions CSS de la carte*/
+#map {
+	height: 27em;
+	width: auto;
+	border: 2px solid #ECEFF1;
+	border-radius: 8px;
+}
+
+
+/*Buttons*/
+.btn{
+	background-color:#607D8B;
+	border-color:transparent;
+	box-shadow: 4px 4px 4px #999;
+	transition: 0.4s;
+}
+.btn:hover{
+	background-color:#455A64;
+	border-color:transparent;
+}
+.btn:active{
+	background-color:#455A64; 
+	border-color:transparent;	
+}
