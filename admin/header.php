@@ -1,3 +1,7 @@
+<?php
+$root = str_ireplace(dirname(__DIR__, 2), 'http://localhost', __DIR__);
+$root = str_ireplace('\\', '/', $root);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,5 +11,6 @@
     <title>Le Boudoir - <?= $fichier ?></title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= $root ?>/style.css">
 </head>
 <body>

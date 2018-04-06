@@ -1,0 +1,27 @@
+#menu a, #bouton{
+    background-color: #607D8B;
+    color : #ECEFF1;
+}
+#menu a:hover, #bouton:hover {
+    background-color: #455A64;
+}
+#menu a:active, #bouton:active {
+    background-color: #263238;
+}
+
+#shadow{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#shadow2{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding-bottom: 2.5em;
+}
+
+#shadow3{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#shadow4{
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ }
