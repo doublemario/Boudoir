@@ -3,10 +3,12 @@
 // Pour pouvoir utiliser nos dépendances, on fait un require sur le fichier autoload.php généré par composer
 	require_once('../vendor/autoload.php');
 
+
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
 	use PHPMailer\PHPMailer\SMTP;
 
+	if(!empty($_POST)){
 	$mail = new PHPMailer();
 
 	// utilisation d'un stmp pour envoyer le mail
@@ -21,7 +23,7 @@
 	$mail->Port = 465;
 
 	// expéditeur ou destinataire du mail
-	$mail->setFrom('promo5wf3@gmx.fr', 'Matthieu');
+	$mail->setFrom('promo5wf3@gmx.fr', 'Le Boudoir');
 	$mail->addAddress('b.belmehdi@jbrel.fr', 'bilal');
 	// On peut ajouter des cc
 	// $mail->addCC('mail@truc.fr')
@@ -32,13 +34,13 @@
 	// Contenu du mail
 	$mail->Subject = 'Mon sujet';
 
-	$message ='Le client  ' . $_POST["nom"].' <br>  ';
+	$message ='Le client  ' . $_POST['name'].' <br>  ';
 
     if(!empty($_POST["entreprise"])){
-        $message .= 'De l\'entreprise ' . $_POST["entreprise"].'<br>';
+        $message .= 'De l\'entreprise ' . $_POST['entreprise'] .'<br>';
     }
 
-    $message.=' mail: ' .$_POST["mail"].'<br> vous a laissé le message suivant'.$_POST["msg"];
+    $message .= ' mail: ' .$_POST['mail'].'<br> vous a laissé le message suivant'.$_POST['msg'];
 
 
 
@@ -52,6 +54,7 @@
     else{
         echo 'Mail envoyé';
     }
+}
 ?>
 
 		<section class="container-fluid" id="block">
